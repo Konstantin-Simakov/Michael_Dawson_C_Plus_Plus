@@ -1,0 +1,7 @@
+// exercise1.txt
+
+       Permissible names
+Good names         Bad names
+names              my_favourite_ice_cream
+x1                 s
+t_and_h            __treasure
