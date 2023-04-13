@@ -19,7 +19,7 @@ int main(void)
 			cout << "You picked Easy.\n";
 			break;
 		case NORMAL:
-			cout << "You picked Noraml.\n";
+			cout << "You picked Normal.\n";
 			break;
 		case HARD:
 			cout << "You picked Hard.\n";

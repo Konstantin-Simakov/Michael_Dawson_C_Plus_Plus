@@ -1,5 +1,6 @@
 // game_stats.cpp -- declarations and initializaion for variables
 #include <iostream>
+#include <cinttypes>		// MAX_INT, MIN_INT
 
 int main(void)
 {
