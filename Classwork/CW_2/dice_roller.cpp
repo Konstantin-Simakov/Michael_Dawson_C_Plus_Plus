@@ -1,7 +1,7 @@
 // dice_roller.cpp
 // Demonstrates generation of random numbers
 #include <iostream>
-#include <cstdlib>		// For rand(), RAND_MAX
+#include <cstdlib>		// For rand(), srand(), RAND_MAX
 #include <ctime>		// For time()
 
 int main(void)
@@ -13,6 +13,7 @@ int main(void)
 	int dice = rand() % 6 + 1;
 	
 	cout << "You rolled " << dice << " points." << endl;
+	cout << "RAND_MAX = " << RAND_MAX << endl;
 
 	return 0;
 }

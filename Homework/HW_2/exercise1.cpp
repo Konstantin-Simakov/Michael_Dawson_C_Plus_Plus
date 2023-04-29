@@ -1,10 +1,11 @@
 // exercise1.cpp
+// 'Difficulty levels' program 
 #include <iostream>
 
 int main(void)
 {
 	using namespace std;
-	cout << "Defficulty Levels\n\n";
+	cout << "Defficulty levels:\n\n";
 	cout << "1 -- Easy\n";
 	cout << "2 -- Normal\n";
 	cout << "3 -- Hard\n\n";
@@ -27,6 +28,7 @@ int main(void)
 		default: 
 			cout << "You picked an invalid choice.\n";
 	}
+	cout << "Bye!\n";
 
 	return 0;
 }

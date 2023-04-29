@@ -27,6 +27,7 @@ int main(void)
 		default:
 			cout << "You picked an invalid choice.\n";
 	}
+	cout << "\nBye!\n";
 
 	return 0;
 }

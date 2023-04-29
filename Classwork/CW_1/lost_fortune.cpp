@@ -8,7 +8,7 @@ int main(void)
 	using std::cin;
 	using std::endl;
 	using std::string;
-	const int GOLD_PIECES = 900;
+	const int GOLD_PIECES = 1000;
 	int adventurers, killed, survivors;
 	string leader;
 
@@ -28,7 +28,7 @@ int main(void)
 	cout << "-- in search of the lost treasure of the Ancient Dwarves. ";
 	cout << "The group was led by that legendary rogue, " << leader << ".\n";
 
-	cout << "\nAlong the way, a band of marauding ogres ambushed the party. "
+	cout << "\nAlong the way, a band of marauding ogres ambushed the party. ";
 	cout << "All fought bravely under the command of " << leader;
 	cout << ", and the ogres were defeated, but at a cost. ";
 	cout << "Of the adventurers, " << killed << " were vanquished, ";

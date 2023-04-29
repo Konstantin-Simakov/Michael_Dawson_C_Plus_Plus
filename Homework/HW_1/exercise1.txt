@@ -1,7 +1,7 @@
 // exercise1.txt
 
-       Permissible names
+       Permissible names                                Unpermissible names
 Good names         Bad names
-names              my_favourite_ice_cream
-x1                 s
-t_and_h            __treasure
+names              my_favourite_ice_cream               1varx_zen
+x1                 s                                    @lord_ozoun
+t_and_h            __treasure                           ``x5=lor$#@%!

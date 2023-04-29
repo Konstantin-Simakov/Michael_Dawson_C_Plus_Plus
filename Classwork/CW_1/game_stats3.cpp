@@ -5,12 +5,13 @@
 int main(void)
 {
 	using namespace std;
-	enum Difficulty {NOVICE = 1, EASY = 0, NORMAL, HARD, UNBEATABLE};
+	enum Difficulty {NOVICE, EASY, NORMAL, HARD, UNBEATABLE};
 	enum Ship_cost {FIHGTER_COST = 25, BOMBER_COST, CRUISER_COST = 50};
 	const int ALIEN_POINTS = 150;
 	int aliens_killed = 10;
 	int score = aliens_killed * ALIEN_POINTS;
-	Difficulty my_difficulty = (Difficulty) 4;		// Permissible by C/C++ standards
+	Difficulty my_difficulty = EASY;
+	// Difficulty my_difficulty = (Difficulty) 4;	// Permissible by C/C++ standards
 	// Difficulty my_difficulty = Difficulty(4);	// Permissible only by C++ standard
 	Ship_cost my_ship_cost = BOMBER_COST;
 
