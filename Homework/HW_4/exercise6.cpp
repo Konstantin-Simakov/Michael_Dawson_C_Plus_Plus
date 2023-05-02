@@ -1,5 +1,5 @@
-// exercise5.cpp
-// 'Who is your daddy?' program with 'map' (for C++, 'dicionary' for Python) type
+// exercise6.cpp
+// 'Who is your dad and grandpa?' program
 
 /* Compile this program with option -std=c++2a on linux.
  * (If the contains() method (C++20 and above) doesn't work, replace it with count().)
@@ -7,16 +7,17 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
 #include <string>
 
 int main(void)
 {
 	using namespace std;
-	map<string, string> relation;				// Dictionary of relation 'son-dad'
+	map<string, vector<string>> relation;		// Dictionary of relation 'son-dad-grandpa'
 	int choice;									// User choice
 
 	// Player invitation
-	cout << "\tWelcome to the \'Who is your daddy?\' program!\n";
+	cout << "\tWelcome to the \'Who is your daddy and grandpa?\' program!\n";
 
 	// Main loop
 	do
@@ -24,10 +25,10 @@ int main(void)
 		// Menu
 		cout << "\nChoose one from actions:\n"
 			 << "0) Exit program\n"
-			 << "1) Add a son-dad pair\n"
-			 << "2) Change a son-dad pair\n"
-			 << "3) Remove a son-dad pair\n"
-			 << "4) Print all son-dad pairs\n";
+			 << "1) Add a son-dad-grandpa trio\n"
+			 << "2) Change a son-dad-grandpa trio\n"
+			 << "3) Remove a son-dad-grandpa trio\n"
+			 << "4) Print all son-dad-grandpa trios\n";
 
 		// Getting and checking the choice
 		cout << "\nYour choice: ";
@@ -41,8 +42,9 @@ int main(void)
 		cin.get();
 
 		// Choice processing
-		string man;						// Name of son; dictionary key
-		string dad;						// Name of his dad; dictionary value
+		string man;				// Name of son; dictionary key
+		string dad;				// Name of his dad; first vector value of the dictionary			
+		string grandpa;			// Name of his grandpa; second vector value of the dictionary
 		switch (choice)
 		{
 			case 0:
@@ -64,14 +66,21 @@ int main(void)
 					{
 						getline(cin, dad);
 					}
+					cout << "Enter name of grandpa: ";
+					getline(cin, grandpa);
 
-					relation[man] = dad;
+					relation[man].push_back(dad);
+					if (!(grandpa.empty()))
+					{
+						relation[man].push_back(grandpa);
+					}
 					cout << "Added successfully.\n";
 				}
 				else
 				{
-					cout << "Sorry, the son " << man << " with his dad " << relation[man]
-						 << " is already. Try to remove it or add another pair.\n";					
+					cout << "Sorry, the son " << man << " with his dad " << relation[man][0]
+						 << " and his grandpa " << relation[man][1] << " is already.\n"
+						 << "Try to remove or change it or add another pair.\n";					
 				}
 				break;
 			case 2:
@@ -90,14 +99,30 @@ int main(void)
 					{
 						getline(cin, dad);
 					}
-					
-					relation[man] = dad;
+					cout << "Enter new name of grandpa: ";
+					getline(cin, grandpa);
+
+					relation[man][0] = dad;
+					// If here is no current grandpa, and here is previous grandpa
+					if ((grandpa.empty()) && (relation[man].size() == 2))
+					{
+						// Delete the previous grandpa
+						relation[man].pop_back();
+					}
+					// If here is the current grandpa
+					else if (!(grandpa.empty()))
+					{
+						// Add him or change name of the previous grandpa anyway
+						relation[man].resize(2);
+						relation[man][1] = grandpa;
+					}
+
 					cout << "Changed successfully.\n";
 				}
 				else
 				{
 					cout << "Sorry, the son " << man << " with his dad "
-						 << "is not. Try to add it.\n";					
+						 << "and grandpa is not. Try to add it.\n";					
 				}
 				break;
 			case 3:
@@ -116,7 +141,7 @@ int main(void)
 				else
 				{
 					cout << "Sorry, the son " << man << " with his dad "
-						 << "is not. Try to add it.\n";					
+						 << "and grandpa is not. Try to add it.\n";					
 				}
 				break;
 			case 4:
@@ -124,13 +149,21 @@ int main(void)
 				{
 					for (auto one_pair = relation.cbegin(); one_pair != relation.cend(); one_pair++)
 					{
-						cout << "Son: " << one_pair->first << ", his dad: " << one_pair->second << endl;
+						cout << "Son: " << one_pair->first << ", his dad: " << one_pair->second[0];
+						if (one_pair->second.size() == 2)
+						{
+							cout << ", his grandpa: " << one_pair->second[1] << endl;
+						}
+						else
+						{
+							cout << endl;
+						}
 					}
-					cout << endl;					
+					cout << endl;
 				}
 				else
 				{
-					cout << "There are no \'son-dad\' pairs. Try to add it.\n";
+					cout << "There are no \'son-dad-grandpa\' trios. Try to add it.\n";
 				}
 				break;
 			default:

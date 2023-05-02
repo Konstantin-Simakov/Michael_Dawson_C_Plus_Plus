@@ -10,7 +10,7 @@ int main(void)
 {
 	using namespace std;
 	vector<string> games;	// List of games
-	int choice;				// Menu choice
+	int choice;				// User choice
 
 	// Player invitation
 	cout << "\tWelcome to the \'Maintaining a list of games\' program!\n";
@@ -20,20 +20,31 @@ int main(void)
 	{
 		// Menu
 		cout << "\nChoose one of the action.\n";
+		cout << "0) Exit porgram\n";
 		cout << "1) List the titles of all specified games\n";
 		cout << "2) Add a game title\n";
 		cout << "3) Remove a game title\n";
-		cout << "4) Exit porgram\n";
 
-		// Getting a user choice
-		cout << "\nEnter your choice: ";
-		(cin >> choice).get();						// SPECIFY THIS FOR STUDENT!!!
+		// Getting and checking the choice
+		cout << "\nYour choice: ";
+		while (!(cin >> choice))				// SPECIFY THIS FOR STUDENT!!!
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+				continue;
+			cout << "Please enter a number: ";
+		}
+		cin.get();
 
 		// Choice processing
 		string game;
 		vector<string>::const_iterator c_iter;
 		switch (choice)
 		{
+			case 0:
+				// Player farewell
+				cout << "\nBye!\n";
+				break;
 			case 1: 
 				cout << "Your list of games:\n";
 				if (games.empty())
@@ -80,18 +91,10 @@ int main(void)
 					cout << "Removed successfully.\n";
 				}
 				break;
-			case 4:
-				// Player farewell
-				cout << "\nBye!\n";
-				break;
 			default:
-				cout << "Unknow choice. Please choose 1, 2, 3 or 4.\n";
-				if (!cin)
-					cin.clear();
-				while (cin.get() != '\n')
-					continue;
+				cout << "Unknow choice. Please choose 0, 1, 2, 3.\n";
 		}
-	} while (choice != 4);
+	} while (choice != 0);
 
 	return 0;
 }
