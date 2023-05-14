@@ -1,23 +1,19 @@
 // exercise1.cpp
-// Counts from start to end number through interval and in reverse order
+// Finding and fixing bugs
+
 #include <iostream>
+#include <string>		// For std::string
 
 int main(void)
 {
 	using namespace std;
-	cout << "Enter the start number, end number and interval between numbers: ";
-	int start, end, interval;
-	cin >> start >> end >> interval;
+	string phrase = "Game Over!!!";
 
-	cout << "\nCounting by ascend order:\n";
-	for (int num = start; num <= end; num += interval)
-		cout << num << "   ";
-	cout << endl;
-
-	cout << "\nCounting by descend order:\n";
-	for (int num = end; num >= start; num -= interval)
-		cout << num << "   ";
-	cout << endl;
+	for (unsigned i = 0; i < phrase.size(); ++i)
+	{
+		cout << "Character at position " << i << " is " << phrase[i] << endl;
+	}
+	cout << "\nBye!\n";
 
 	return 0;
 }

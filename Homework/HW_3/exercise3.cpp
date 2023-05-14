@@ -1,80 +1,23 @@
 // exercise3.cpp
-/*
-Improve the 'word_jumble.cpp' game adding to it a score system.
-Give as many scores for the guessed word as there are letters in it.
-Remove scores if the user resorts to hints.
-*/
-
+// Counts from start to end number through interval and in reverse order
 #include <iostream>
-#include <string>		// For std::string
-#include <cstdlib>
-#include <ctime>
 
 int main(void)
 {
 	using namespace std;
-	enum Fields {WORD, HINT, NUM_FIELDS};
-	const int NUM_WORDS = 5;
-	const string WORDS[NUM_WORDS][NUM_FIELDS] = {
-		{"wall", "Do you feel you\'re banging your head against something?"},
-		{"glasses", "These might help you see the answer."},
-		{"labored", "Going slowly, is it?"},
-		{"persistent", "Keep at it."},
-		{"jumble", "it\'s what the game is all about."}
-	};
+	cout << "Enter the start number, end number and interval between numbers: ";
+	int start, end, interval;
+	cin >> start >> end >> interval;
 
-	// Choice of word to jumble it
-	srand(static_cast<unsigned>(time(0)));
-	int choice = (rand() % NUM_WORDS);
-	string the_word = WORDS[choice][WORD];		// Word to be guessing
-	string the_hint = WORDS[choice][HINT];		// Hint for the word
+	cout << "\nCounting by ascend order:\n";
+	for (int num = start; num <= end; num += interval)
+		cout << num << "   ";
+	cout << endl;
 
-	// Jumbling the word
-	string jumble = the_word;			// Jumbled version of the word
-	int length = jumble.size();
-	for (int i = 0; i < length; ++i)
-	{
-		int index_1 = rand() % length;
-		int index_2 = rand() % length;
-		char temp = jumble[index_1];
-		jumble[index_1] = jumble[index_2];
-		jumble[index_2] = temp;
-	}
-
-	// Plyaer invitation
-	cout << "\t\t\tWelcome to \'Word Jumble\'!\n\n";
-	cout << "Unscramble the letters to make a word.\n";
-	cout << "Enter \'hint\' for a hint.\n";
-	cout << "Enter \'quit\' to quit the game.\n\n";
-	
-	// Main part of the game
-	cout << "The jumble is: " << jumble << endl;
-	string guess;
-	cout << "\nYour guess: ";
-	cin >> guess;
-	int scores = length;	// Player scores
-	while (guess != the_word && guess != "quit")
-	{
-		if ("hint" == guess)
-		{
-			cout << "\"" << the_hint << "\"";
-			if (scores > 0)
-				--scores;	// Removal of player scores
-		}
-		else
-			cout << "Sorry, that\'s not it.";
-
-		cout << "\n\nYour guess: ";
-		cin >> guess;
-	}
-	
-	// Farewell to the player and telling about his player scores 
-	if (guess == the_word)
-		cout << "\nThat\'s it! You guessed it!\n";
-	else
-		scores = 0;
-	cout << "You have " << scores << " scores.\n";
-	cout << "\nThanks for playing.\n";
+	cout << "\nCounting by descend order:\n";
+	for (int num = end; num >= start; num -= interval)
+		cout << num << "   ";
+	cout << endl;
 
 	return 0;
 }

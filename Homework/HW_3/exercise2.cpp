@@ -1,18 +1,27 @@
 // exercise2.cpp
-// Prints the input text in reverse order
+// Finding and fixing bugs
+
 #include <iostream>
 
 int main(void)
 {
 	using namespace std;
-	cout << "Enter the text:\n";
-	string text;
-	getline(cin, text);
+	const int ROWS = 2;
+	const int COLS = 3;
+	char map[ROWS][COLS] = {
+		{'0', 'X', '0'},
+		{' ', 'X', '0'}
+	};
 
-	cout << "\nThis text in reverse order:\n";
-	for (int i = text.size() - 1; i >= 0; --i)
-		cout << text[i];
-	cout << "\n\nBye!\n";
+	// Output
+	for (int i = 0; i < ROWS; ++i)
+	{
+		for (int j = 0; j < COLS; ++j)
+		{
+			cout << map[i][j] << " ";
+		}
+		cout << endl;
+	}
 
 	return 0;
 }
