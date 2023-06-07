@@ -4,20 +4,23 @@
 #include <iostream>
 #include <string>		// For std::string class
 #include <map>			// For std::map container
+#include <vector>		// For std::vector container
 
 int main(void)
 {
 	using namespace std;
 	// Constants
 	const int MAX_POOL = 30;
-	// Initial variables
-	map<string, int> person = {
-		{"Strength", 0},	
-		{"Health", 0}, 
-		{"Wisdom", 0}, 
-		{"Dexterity", 0}
+	// Initial variables.
+	// Values of the 'person': 
+	// 1st element -- points,
+	// 2nd element -- index of a key.
+	map<string, vector<int>> person = {
+		{"Strength", {0, 0}},	
+		{"Health", {0, 1}}, 
+		{"Wisdom", {0, 2}}, 
+		{"Dexterity", {0, 3}}
 	};
-	
 	int pool = MAX_POOL;
 
 	// Player invitation
@@ -26,22 +29,29 @@ int main(void)
 	int choice;
 	do
 	{
-		// Output of results
+		// Data output in the order they were initialized.
 		cout << "\nYour person has follow attributes:\n\n";
-		cout << "\t\tStrength - " << person["Strength"] << endl;
-		cout << "\t\tHealth - " << person["Health"] << endl;
-		cout << "\t\tWisdom - " << person["Wisdom"] << endl;
-		cout << "\t\tDexterity - " << person["Dexterity"] << endl;		
+		for (unsigned i = 0; i < person.size(); ++i)
+		{
+			// Data search by the given condition
+			for (auto m_citer = person.cbegin(); m_citer != person.cend(); ++m_citer)
+			{
+				if (static_cast<unsigned>(m_citer->second[1]) == i)
+				{
+					cout << "\t\t" << m_citer->first << " - " << m_citer->second[0] << endl;
+				}
+			}
+		}
 		cout << "\n\t\tPool has " << pool << " points.\n";
 
 		// Menu
 		cout << "\nWhat action do you want to choose?\n\n";
 		cout << "\t\t0 - Exit\n";
 		cout << "\t\t1 - Add a points to attributes\n";
-		cout << "\t\t2 - Withdraw points from attributes\n\n";
+		cout << "\t\t2 - Withdraw points from attributes\n";
 
 		// Choice of action
-		cout << "Your action: ";
+		cout << "\n\nYour action: ";
 		cin >> choice;
 
 		// Values for according keys
@@ -83,10 +93,10 @@ int main(void)
 				}
 
 				// Data writing if all is OK.
-				person["Strength"] += strength;
-				person["Health"] += health;
-				person["Wisdom"] += wisdom;
-				person["Dexterity"] += dexterity;
+				person["Strength"][0] += strength;
+				person["Health"][0] += health;
+				person["Wisdom"][0] += wisdom;
+				person["Dexterity"][0] += dexterity;
 				pool -= strength + health + wisdom + dexterity;
 				break;
 
@@ -103,28 +113,28 @@ int main(void)
 				cin >> dexterity;
 
 				// Input validation and setting correct values for according keys.
-				if (strength > person["Strength"] || strength < 0)
+				if (strength > person["Strength"][0] || strength < 0)
 				{
-					strength = person["Strength"];
+					strength = person["Strength"][0];
 				}
-				if (health > person["Health"] || health < 0)
+				if (health > person["Health"][0] || health < 0)
 				{
-					health = person["Health"];
+					health = person["Health"][0];
 				}
-				if (wisdom > person["Wisdom"] || wisdom < 0)
+				if (wisdom > person["Wisdom"][0] || wisdom < 0)
 				{
-					wisdom = person["Wisdom"];
+					wisdom = person["Wisdom"][0];
 				}
-				if (dexterity > person["Dexterity"] || dexterity < 0)
+				if (dexterity > person["Dexterity"][0] || dexterity < 0)
 				{
-					dexterity = person["Dexterity"];
+					dexterity = person["Dexterity"][0];
 				}
 
 				// Data writing when all is OK.
-				person["Strength"] -= strength;
-				person["Health"] -= health;
-				person["Wisdom"] -= wisdom;
-				person["Dexterity"] -= dexterity;
+				person["Strength"][0] -= strength;
+				person["Health"][0] -= health;
+				person["Wisdom"][0] -= wisdom;
+				person["Dexterity"][0] -= dexterity;
 				pool += strength + health + wisdom + dexterity;
 				break;
 
