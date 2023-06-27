@@ -19,10 +19,13 @@ int main(void)
 
 long factorial(int n)
 {
-	long res = 1;
+	long res = n;
 
-	for (int i = 1; i <= n; ++i)
-		res *= i;
+	while (n > 1)
+	{
+		--n;
+		res *= n;
+	}
 
 	return res;
 }
