@@ -1,5 +1,5 @@
 // exercise10.cpp
-// 
+// Counts input words to "done" word.
 #include <iostream>
 #include <string>
 using namespace std;
