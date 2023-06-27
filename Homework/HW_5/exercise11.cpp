@@ -1,6 +1,6 @@
 // exercise11.cpp
 // Counts all characters, spaces,
-// alphabetic ones and words.
+// alphabetics, punctuations and words.
 
 #include <iostream>
 #include <cctype>		// For isspace()
