@@ -31,14 +31,15 @@ int main(void)
 	{
 		// Data output in the order they were initialized.
 		cout << "\nYour person has follow attributes:\n\n";
-		for (unsigned i = 0; i < person.size(); ++i)
+		for (unsigned index_key = 0; index_key < person.size(); ++index_key)
 		{
 			// Data search by the given condition
 			for (auto m_citer = person.cbegin(); m_citer != person.cend(); ++m_citer)
 			{
-				if (static_cast<unsigned>(m_citer->second[1]) == i)
+				if (static_cast<unsigned>(m_citer->second[1]) == index_key)
 				{
 					cout << "\t\t" << m_citer->first << " - " << m_citer->second[0] << endl;
+					break;
 				}
 			}
 		}
@@ -47,8 +48,8 @@ int main(void)
 		// Menu
 		cout << "\nWhat action do you want to choose?\n\n";
 		cout << "\t\t0 - Exit\n";
-		cout << "\t\t1 - Add a points to attributes\n";
-		cout << "\t\t2 - Withdraw points from attributes\n";
+		cout << "\t\t1 - Add a points to attributes from pool\n";
+		cout << "\t\t2 - Withdraw points from attributes to pool\n";
 
 		// Choice of action
 		cout << "\n\nYour action: ";
@@ -65,7 +66,7 @@ int main(void)
 			case 0:	
 				break;
 
-			// 1 - Add points from pool to attributes
+			// 1 - Add points from pool to attributes from pool
 			case 1: 
 				// Data reading.
 				cout << "\nHow many points do you want to add for \'Strength\'? ";
