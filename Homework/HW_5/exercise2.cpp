@@ -13,7 +13,7 @@ using namespace std;
 const int MAX_WRONG = 8;
 
 void notification(int wrong, const string used, const string so_far);
-char ask_letter(string used);
+char ask_letter(const string used);
 bool check_guess(char guess, const string the_word);
 void win_or_lose(int wrong, const string the_word);
 
@@ -84,7 +84,7 @@ void notification(int wrong, const string used, const string so_far)
 	cout << "\nSo far, the words is: " << so_far << endl;
 }
 
-char ask_letter(string used)
+char ask_letter(const string used)
 {
 	char guess;
 
