@@ -92,7 +92,9 @@ void output(int num_month, int first_day_week)
 	{
 		cout << setw(3) << month_day;
 		if (cur_day_week % DAYS_PER_WEEK == 0)
+		{
 			cout << endl;
+		}
 	}
 	cout << endl;
 }

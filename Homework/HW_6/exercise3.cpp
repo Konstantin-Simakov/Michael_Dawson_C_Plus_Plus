@@ -25,5 +25,7 @@ int main(void)
 void to_upper_str(string & str)
 {
 	for (unsigned i = 0; i < str.size(); i++)
+	{
 		str[i] = toupper(str[i]);
+	}
 }

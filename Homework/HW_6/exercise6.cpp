@@ -28,7 +28,9 @@ void reverse(string & str)
 	const unsigned S_LEN = str.size();
 
 	for (unsigned i = 0; i < S_LEN / 2; i++)
+	{
 		swap(str[i], str[S_LEN - (i + 1)]);
+	}
 }
 
 void swap(char & c_1, char & c_2)
