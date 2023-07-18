@@ -3,6 +3,7 @@
 // on the screen with input of strings.
 
 #include <iostream>
+#include <string>
 #include <iomanip>		// For setw() manipulator
 using namespace std;
 
@@ -11,10 +12,10 @@ const int MONTHS = 12;
 
 const string MONTH_NAMES[MONTHS] = {
 	"January", "February", "March", "April", "May", "June", 
-	"July", "Augest", "September", "October", "November", "December"
+	"July", "August", "September", "October", "November", "December"
 };
 const string WEEK_NAMES[DAYS_PER_WEEK] = {
-	"Monday", "Tuesday", "Wednsday", "Thursday", "Friday", "Saturday", "Sunday"
+	"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
 };
 const int MONTH_DAYS[MONTHS] = {
 	31, 28, 31, 30, 31, 30, 
