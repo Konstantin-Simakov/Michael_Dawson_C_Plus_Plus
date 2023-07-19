@@ -1,5 +1,5 @@
 // exercise6.cpp
-// The program traverses a positive number.
+// The program reverses a string.
 
 #include <iostream>
 #include <string>
