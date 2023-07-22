@@ -1,7 +1,6 @@
 // exercise8.cpp
 // power() function.
 #include <iostream>
-#include <cmath>
 using namespace std;
 
 double power(double base, int degree);
@@ -9,15 +8,15 @@ double power(double base, int degree);
 int main(void)
 {
 	double base;
-	int degree;
+	double degree;
 
 	cout << "Enter a power base: ";
 	cin >> base;
-	cout << "Enter a power degree: ";
+	cout << "Enter an integer power degree: ";
 	cin >> degree;
 
-	double p = power(base, degree);
-	cout << base << "^" << degree << " = " << p << endl;
+	double p_1 = power(base, degree);
+	cout << base << "^" << static_cast<int>(degree) << " = " << p_1 << endl;
 
 	return 0;
 }
@@ -28,7 +27,7 @@ double power(double base, int n)
 	
 	if (base != 0.0)
 	{
-		if (n > 0)
+		if (n >= 0)
 		{
 			for (int i = 1; i <= n; i++)
 			{
@@ -44,14 +43,14 @@ double power(double base, int n)
 			res = 1.0 / res;
 		}		
 	}
-	else
+	else // base == 0
 	{
-		if (n == 0)
+		if (n < 0)
 		{
-			cout << "\nThe result of raising 0 to the 0 power is undefined.\n";
-			res = nan("The result of raising 0 to the 0 power is undefined.");
+			cout << "\nThe result of raising 0 to the <0 power is forbidden.\n";
+			res /= 0.0;		
 		}
-		else
+		else if (n > 0)
 		{
 			res = 0.0;
 		}
