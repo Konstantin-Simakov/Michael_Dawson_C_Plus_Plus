@@ -1,6 +1,7 @@
 // exercise8.cpp
 // power() function.
 #include <iostream>
+#include <cmath>        // For nan() function.
 using namespace std;
 
 double power(double base, int degree);
@@ -12,7 +13,7 @@ int main(void)
 
 	cout << "Enter a power base: ";
 	cin >> base;
-	cout << "Enter an integer power degree: ";
+	cout << "Enter a power degree: ";
 	cin >> degree;
 
 	double p_1 = power(base, degree);
@@ -45,12 +46,18 @@ double power(double base, int n)
 	}
 	else // base == 0
 	{
-		if (n < 0)
+		if (n == 0)
+		{
+			cout << "\nThe result of raising 0 to the 0 power is undefined.\n";
+			res = nan("The result of raising 0 to the 0 power is undefined.");
+		}
+		else if (n < 0)
 		{
 			cout << "\nThe result of raising 0 to the <0 power is forbidden.\n";
-			res /= 0.0;		
+			// Infinity
+			res /= 0.0;	
 		}
-		else if (n > 0)
+		else
 		{
 			res = 0.0;
 		}
