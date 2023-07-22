@@ -13,7 +13,7 @@ int main(void)
 
 	cout << "Enter a power base: ";
 	cin >> base;
-	cout << "Enter a power degree: ";
+	cout << "Enter an integer power degree: ";
 	cin >> degree;
 
 	double p_1 = power(base, degree);
