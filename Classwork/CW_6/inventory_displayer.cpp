@@ -23,9 +23,9 @@ int main(void)
 void display(const vector<string> & vec)
 {
 	cout << "Your items:\n";
-	for (vector<string>::const_iterator iter = vec.cbegin(); 
-			iter != vec.cend(); ++iter)
+	for (vector<string>::const_iterator c_iter = vec.cbegin(); 
+			c_iter != vec.cend(); ++c_iter)
 	{
-		cout << *iter << endl;
+		cout << *c_iter << endl;
 	}
 }

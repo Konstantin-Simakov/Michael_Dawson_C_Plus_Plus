@@ -175,7 +175,7 @@ char winner(const vector<char> & board)
 
 	// Since the winner is not determined, we check 
 	// if there is a draw (whether there are empty cells on the field).
-	if (count(board.begin(), board.end(), EMPTY) == 0)
+	if (!game_end && count(board.begin(), board.end(), EMPTY) == 0)
 	{
 		winner_chip = TIE;
 		game_end = true;
