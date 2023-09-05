@@ -1,7 +1,7 @@
 // exercise1.cpp
 // 
 // Virtual pet that user takes care about.
-// Improvement the critter_caretaker.cpp program.
+// Improvement of the critter_caretaker.cpp program.
 // Added name of a critter and the ability to enter
 // the amount of food and time to play with the animal.
 // 
