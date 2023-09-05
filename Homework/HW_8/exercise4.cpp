@@ -95,7 +95,7 @@ int main()
 		{
 			for (auto i_crit = critters.begin(); i_crit != critters.end(); i_crit++)
 			{
-				(*i_crit).eat();
+				i_crit->eat();
 			}
 		}
 		// Play with the critter.
