@@ -1,12 +1,13 @@
 // exercise6.cpp
 // 
 // "Triangle" program.
+// Calculates the perimeter, area, and 
+// median intersection point of a triangle given by its coordinates.
 // 
 // For fixed modificator.
 #include <iostream>
 // For setw(), setprecision() manipulators.
 #include <iomanip>
-// For sqrt(), abs().
 #include <cmath>
 using namespace std;
 

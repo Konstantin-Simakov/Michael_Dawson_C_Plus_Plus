@@ -1,203 +1,130 @@
 // exercise4.cpp
 // 
-// List of virtual pets in the zoo farm 
-// that the user cares about.
+// "Televisor" program.
+// The program imitates the TV as an object.
+// User can enter a channel and increase/reduce the volume.
 // 
 #include <iostream>
 #include <string>
-#include <vector>
-// For exit(), EXIT_SUCCESS, rand(), srand()
-#include <cstdlib>
-// For time()
-#include <ctime>
 using namespace std;
 
-// Level of unhappiness named 'awful'.
-const int AWFUL = 15;
+const int MAX_CHANNEL = 100;
+const int MAX_VOLUME = 10;
 
-class Critter {
+class Televisor {
 public:
-	Critter(string name, int hunger = 0, int boredom = 0);
-	void talk();
-	void eat(int food = 4);
-	void play(int fun = 4);
-	// Target method.
-	void info();
+	Televisor(int channel = 1, int volume = (MAX_VOLUME / 2));
+	void menu() const;
+	// Tells about channel number and current volume level.
+	void info() const;
+	void select_channel();
+	void volume_up();
+	void volume_down();
 private:
-	string m_name;
-	int m_hunger;
-	int m_boredom;
-	inline int get_mood() const;
-	void pass_time(int time = 1);
+	int m_channel;
+	int m_volume;
 };
 
-int main()
+int main(void)
 {
-	srand(static_cast<unsigned>(time(0)));
-	vector<Critter> critters;
-	cout << "Enter names of critters (empty line to finish input).\n\n";
+	cout << "\t\tWelcome to the TV imitataion program.!\n\n";
+	cout << "\t\tChannels: 1 - " << MAX_CHANNEL << endl;
+	cout << "\t\tVolume levels: 1 - " << MAX_VOLUME << "\n\n";
 
-	cout << "How will you name your critter? ";
-	string name;
-	getline(cin, name);
-	int hunger, boredom;
-	while (name != "")
-	{
-		// Random level of hunger and boredom for a critter.
-		hunger = rand() % ((AWFUL + 1) / 2);
-		boredom = rand() % ((AWFUL + 1) / 2);
-		
-		Critter crit(name, hunger, boredom);
-		critters.push_back(crit);
+	// Set tv with default arguments.
+	Televisor tv;
+	tv.info();
 
-		cout << "How will you name your critter? ";
-		getline(cin, name);
-	}
-
-	unsigned num = critters.size();
-	if (num != 0)
-	{
-		cout << "\nYou have " << num << " critters in your zoo farm.\n\n";
-	}
-	else
-	{
-		cout << "\nGood-bye.\n";
-		exit(EXIT_SUCCESS);
-	}
-
-	string choice;
+	int choice;
 	do
 	{
+		tv.menu();
+		cout << "Your choice: ";
+		cin >> choice;
 		cout << endl;
-		cout << "\t\tCritter Caretaker\n\n";
-		cout << "\t\t0 - Quit\n";
-		cout << "\t\t1 - Listen to your critters\n";
-		cout << "\t\t2 - Feed your critters\n";
-		cout << "\t\t3 - Play with your critters\n\n";
 
-		cout << "Choice: ";
-		getline(cin, choice);
-		// Quit.
-		if ("0" == choice)
+		switch (choice)
 		{
-			cout << "\nGood-bye.\n";
+			case 0:
+				cout << "Good-bye.\n";
+				break;
+			case 1:
+				tv.info();
+				break;
+			case 2:
+				tv.select_channel();
+				break;
+			case 3:
+				tv.volume_up();
+				break;
+			case 4:
+				tv.volume_down();
+				break;
+			default:
+				cout << "Sorry, there is no item " << choice << " in the menu.\n";
 		}
-		// Find out about critter's feeling.
-		else if ("1" == choice)
-		{
-			for (auto i_crit = critters.begin(); i_crit != critters.end(); i_crit++)
-			{
-				i_crit->talk();
-			}
-		}
-		// Feed the critter.
-		else if ("2" == choice)
-		{
-			for (auto i_crit = critters.begin(); i_crit != critters.end(); i_crit++)
-			{
-				i_crit->eat();
-			}
-		}
-		// Play with the critter.
-		else if ("3" == choice)
-		{
-			for (auto i_crit = critters.begin(); i_crit != critters.end(); i_crit++)
-			{
-				i_crit->play();
-			}
-		}
-		// Secret code to display the object content.
-		else if ("status" == choice)
-		{
-			cout << "You entered the secret code!\n\n";
-			for (auto i_crit = critters.begin(); i_crit != critters.end(); i_crit++)
-			{
-				i_crit->info();
-			}
-		}
-		// Unknown user input.
-		else
-		{
-			cout << "Sorry, there is no item " << choice << " in the menu.\n";
-		}
-	} while (choice != "0");
+	} while (choice != 0);
 
 	return 0;
 }
 
-Critter::Critter(string name, int hunger, int boredom):
-m_name(name),
-m_hunger(hunger),
-m_boredom(boredom)
+Televisor::Televisor(int channel, int volume):
+m_channel(channel),
+m_volume(volume)
 {
 
 }
 
-void Critter::info()
+void Televisor::menu() const
 {
-	cout << "Critter\'s name: " << m_name << endl;
-	cout << "Its hunger level: " << m_hunger << endl;
-	cout << "Its boredom level: " << m_boredom << endl;
+	cout << endl;
+	cout << "\t\t0 - Quit\n"
+		 << "\t\t1 - Display status\n"
+		 << "\t\t2 - Select channel number\n"
+		 << "\t\t3 - Up volume level\n"
+		 << "\t\t4 - Down volume level\n";
 	cout << endl;
 }
 
-void Critter::pass_time(int time)
+void Televisor::info() const
 {
-	m_hunger += time;
-	m_boredom += time;
-}
-
-inline int Critter::get_mood() const
-{
-	return m_hunger + m_boredom;
-}
-
-void Critter::talk()
-{
-	cout << "My name is " << m_name << " and I feel ";
-
-	int unhappiness = get_mood();
-	if (unhappiness > AWFUL)
-	{
-		cout << "mad.";
-	}
-	else if (unhappiness > AWFUL - 5)
-	{
-		cout << "frustrated.";
-	}
-	else if (unhappiness > AWFUL - 10)
-	{
-		cout << "okay.";
-	}
-	else
-	{
-		cout << "happy.";
-	}
 	cout << endl;
-
-	pass_time();
+	cout << "Your channel: " << m_channel << endl;
+	cout << "Your volume: " << m_volume << "\n\n";
 }
 
-void Critter::eat(int food)
+void Televisor::select_channel()
 {
-	m_hunger -= food;
-	if (m_hunger < 0)
+	cout << "Enter a channel number: ";
+	int channel;
+	cin >> channel;
+	while (channel < 1 || channel > MAX_CHANNEL)
 	{
-		m_hunger = 0;
+		cout << "Incorrect channel number has been entered. Try again.\n";
+		cout << "Enter a channel number: ";
+		cin >> channel;
 	}
 
-	cout << "Brruppp.\n";
-	pass_time();
+	cout << "Ok...\n";
+	m_channel = channel;
 }
 
-void Critter::play(int fun)
+void Televisor::volume_up()
 {
-	m_boredom -= fun;
-	if (m_boredom < 0)
+	++m_volume;
+	if (m_volume > MAX_VOLUME)
 	{
-		m_boredom = 0;
+		m_volume = MAX_VOLUME;
 	}
+	cout << "Ok.\n";
+}
 
-	cout << "Wheee!\n";
-	pass_time();
+void Televisor::volume_down()
+{
+	--m_volume;
+	if (m_volume < 0)
+	{
+		m_volume = 0;
+	}
+	cout << "Ok.\n";
 }

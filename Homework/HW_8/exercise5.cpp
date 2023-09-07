@@ -26,7 +26,6 @@ private:
 	void display();
 };
 
-
 int main(void)
 {
 	Time tm(23, 59, 50);
