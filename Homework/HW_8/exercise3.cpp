@@ -18,7 +18,7 @@ const int AWFUL = 15;
 
 class Critter {
 public:
-	Critter(string name, int hunger = 0, int boredom = 0);
+	Critter(const string & name = "", int hunger = 0, int boredom = 0);
 	void talk();
 	void eat(int food = 4);
 	void play(int fun = 4);
@@ -126,7 +126,7 @@ int main()
 	return 0;
 }
 
-Critter::Critter(string name, int hunger, int boredom):
+Critter::Critter(const string & name, int hunger, int boredom):
 m_name(name),
 m_hunger(hunger),
 m_boredom(boredom)

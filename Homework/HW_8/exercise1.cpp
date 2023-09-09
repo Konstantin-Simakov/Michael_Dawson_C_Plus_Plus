@@ -11,7 +11,7 @@ using namespace std;
 
 class Critter {
 public:
-	Critter(string name, int hunger = 0, int boredom = 0);
+	Critter(const string & name = "", int hunger = 0, int boredom = 0);
 	void talk();
 	void eat();
 	void play();
@@ -64,7 +64,7 @@ int main()
 	return 0;
 }
 
-Critter::Critter(string name, int hunger, int boredom):
+Critter::Critter(const string & name, int hunger, int boredom):
 m_name(name),
 m_hunger(hunger),
 m_boredom(boredom)
