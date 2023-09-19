@@ -98,6 +98,14 @@ void Lobby::remove_player()
 	{
 		Player * p_temp = m_p_head;
 		m_p_head = m_p_head->get_next();
+		
+		// If the list has become an empty,
+		// set all remain members to their initial values.
+		if (NULL == m_p_head)
+		{
+			m_p_tail = NULL;
+		}
+		
 		delete p_temp;
 	}
 }
