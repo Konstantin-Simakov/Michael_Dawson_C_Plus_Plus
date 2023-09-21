@@ -108,7 +108,6 @@ void Dynamic_Array::shuffle_random()
 			m_p_array[index_1] = m_p_array[index_2];
 			m_p_array[index_2] = temp;
 		}
-
 		++i;
 	}
 }
@@ -125,9 +124,9 @@ int Dynamic_Array::search_equal_nums()
 
 	for (int i = 0; i < m_size; ++i)
 	{
-		for (int j = 0; j < m_size; ++j)
+		for (int j = 0; j != i && j < m_size; ++j)
 		{
-			if (m_p_array[i] == m_p_array[j] && i != j)
+			if (m_p_array[i] == m_p_array[j])
 			{
 				count++;
 				break;
