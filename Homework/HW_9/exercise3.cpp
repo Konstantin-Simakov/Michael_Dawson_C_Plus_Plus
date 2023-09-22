@@ -23,7 +23,7 @@
 using namespace std;
 
 class Dynamic_Array {
-	// Friend functions cannot use overloaded subscript operator.
+	// Friend functions cannot use the overloaded subscript operator.
 	friend ostream & operator<<(ostream & os, const Dynamic_Array & an_array);
 public:
 	Dynamic_Array(int elements = 2);
@@ -31,6 +31,7 @@ public:
 	Dynamic_Array(const Dynamic_Array & c);
 	Dynamic_Array & operator=(const Dynamic_Array & c);
 	double & operator[](int index);
+public:
 	void fill_random();
 	void shuffle_random();
 	int search_diff_nums();
