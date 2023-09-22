@@ -8,29 +8,24 @@ int main(void)
 {
 	using namespace std;
 	char str[] = "Hello, my friends!\nHow are you?\n";
-	const char * const find = my_strchr(str, '\n');
+	const char * const find = my_strchr(str, 'f');
 	
-	cout << find + 1 << endl;
+	cout << find << endl;
 
 	return 0;
 }
 
 char * my_strchr(const char * str, int ch)
 {
-	char * ptr_to_ch;
-
-	while (*str != ch && *str)
+	char * ptr_to_ch = NULL;
+	while (*str)
 	{
-		str++;
-	}
-	
-	if (!*str)
-	{
-		ptr_to_ch = NULL;
-	}
-	else
-	{
-		ptr_to_ch = (char *) (str);
+		if (ch == *str)
+		{
+			ptr_to_ch = (char *) str;
+			break;
+		}
+		++str;
 	}
 
 	return ptr_to_ch;
