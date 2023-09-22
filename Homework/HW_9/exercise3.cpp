@@ -6,11 +6,12 @@
 // 1) constructor allocating memory for a given number of elements;
 // 2) destructor;
 // 3) copy constructor;
-// 4) overloaded assignment operator; 
-// 5) filling the array with random numbers;
-// 6) shuffle of the array randomly;
-// 7) search for the number of different elements;
-// 8) displaying the array on the screen with cout object and << operator;
+// 4) overloaded assignment operator;
+// 5) overloaded subscript operator;
+// 6) filling the array with random numbers;
+// 7) shuffle of the array randomly;
+// 8) search for the number of different elements;
+// 9) displaying the array on the screen with cout object and << operator;
 // Note: no use std::vector!!!
 // 
 #include <iostream>
@@ -22,15 +23,16 @@
 using namespace std;
 
 class Dynamic_Array {
-	friend ostream & operator<<(ostream & os, const Dynamic_Array & an_array);
 public:
 	Dynamic_Array(int elements = 2);
 	~Dynamic_Array();
 	Dynamic_Array(const Dynamic_Array & c);
 	Dynamic_Array & operator=(const Dynamic_Array & c);
+	double & operator[](int index);
 	void fill_random();
 	void shuffle_random();
 	int search_diff_nums();
+	friend ostream & operator<<(ostream & os, const Dynamic_Array & an_array);
 private:
 	double * m_p_array;
 	int m_size;
@@ -77,6 +79,11 @@ Dynamic_Array & Dynamic_Array::operator=(const Dynamic_Array & c)
 	}
 
 	return *this;
+}
+
+double & Dynamic_Array::operator[](int index)
+{
+	return m_p_array[index];
 }
 
 void Dynamic_Array::fill_random()
@@ -163,7 +170,11 @@ int main(void)
 	// Overloaded assignment operator (method operator=()) is working.
 	arr_2 = arr_1;
 
-	cout << "Array 1:\n";
+	// Overloaded subscript operator (operator[]()) is working both writing and reading.
+	arr_1[0] = -5.5;
+	cout << "arr_1[0] = " << arr_1[0] << endl;
+	
+	cout << "\nArray 1:\n";
 	// Friend function operator<<() is working.
 	cout << arr_1 << endl;
 	cout << "The number of different numbers is " << arr_1.search_diff_nums() << endl;
