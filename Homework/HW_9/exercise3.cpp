@@ -1,6 +1,6 @@
 // exercise3.cpp
 // 
-// "Dynamic array" program.
+// "Dynamic number array" program.
 // 
 // Functionality:
 // 1) constructor allocating memory for a given number of elements;
