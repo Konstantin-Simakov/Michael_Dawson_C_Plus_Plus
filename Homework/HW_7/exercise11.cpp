@@ -23,18 +23,18 @@ int main(void)
 	return 0;
 }
 
-bool is_within(const char * s, char c)
+bool is_within(const char * str, char ch)
 {
-	bool in_str = false;
+  bool found = false;
+  while (*str)
+  {
+    if (ch == *str)
+    {
+      found = true;
+      break;
+    }
+    ++str;
+  }
 
-	while (*s != c && *s)
-	{
-		s++;
-	}	
-	if (*s)
-	{
-		in_str = true;
-	}
-
-	return in_str;
+  return found;
 }

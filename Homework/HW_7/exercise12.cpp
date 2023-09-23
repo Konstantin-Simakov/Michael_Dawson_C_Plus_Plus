@@ -10,7 +10,7 @@ void str_delete_spaces(char *);
 int main(void)
 {
 	using namespace std;
-	char str[] = "Hello, dear friend! ";
+	char str[] = "Hello, dear friend!\n  \t ";
 	cout << "Source string:\n" << str << endl;
 	cout << "The size of the string is: " << strlen(str) << endl;
 
@@ -23,7 +23,7 @@ int main(void)
 
 void str_delete_spaces(char * str)
 {
-	char * temp;
+	char * temp = NULL;
 
 	while (*str)
 	{
