@@ -1,6 +1,6 @@
 // exercise2.cpp
 // 
-// Improvement of the exercise1.cpp.
+// Change of the exercise1.cpp.
 // Using stack instead of queue or deque
 // with only one pointer to the head of the list.
 // 
