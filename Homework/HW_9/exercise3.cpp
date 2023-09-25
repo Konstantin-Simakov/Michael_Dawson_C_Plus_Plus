@@ -13,6 +13,7 @@
 // 8) search for the number of different elements;
 // 9) displaying the array on the screen with cout object and << operator;
 // Note: no use std::vector!!!
+// The program must be tested for all array methods.
 // 
 #include <iostream>
 #include <iomanip>
