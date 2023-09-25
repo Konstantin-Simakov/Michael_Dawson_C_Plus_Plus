@@ -5,10 +5,17 @@
 // Funcionality:
 // 1) the ability to access individual rows of an array by indexes; 
 // 2) control going beyond the limits of arrays; 
-// 3) perform element-by-element operations of concatenating two arrays to form a new array; 
+// 3) perform element-by-element operations of concatenating two arrays to form a new array;
 // 4) merging two arrays with the exclusion of duplicate elements; 
-// 5) displaying an array element and the entire array. 
-// The program must contain a menu that allows you to check all methods of the class.
+// 5) displaying an array element and the entire array;
+// 6) assignment operator for an array;
+// 7) copy constructor;
+// 8) constructor;
+// 9) destructor;
+// 10) add an element of an array;
+// 
+// It is recommended to use a stack data structure that tracks the number of elements.
+// The program must be tested for all array methods.
 // 
 #include <iostream>
 #include <string>
