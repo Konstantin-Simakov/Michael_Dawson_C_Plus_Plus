@@ -30,7 +30,7 @@ private:
     String * m_p_next;
 public:
     String(const std::string & str = "");
-    std::string get_string() const;
+    std::string & get_string();
     String * get_next() const;
     void set_next(String * next);
 };
@@ -40,7 +40,7 @@ m_str(str),
 m_p_next(NULL)
 {}
 
-std::string String::get_string() const
+std::string & String::get_string()
 {
     return m_str;
 }
@@ -72,7 +72,7 @@ public:
     ~String_Array();
     String_Array(const String_Array & c);
     String_Array & operator=(const String_Array & c);
-    std::string operator[](int index) const;
+    std::string & operator[](int index) const;
     String_Array operator+(const String_Array & str_ar) const;
     String_Array merge_with(const String_Array & s_ar) const;
     int get_length() const;
@@ -130,7 +130,7 @@ String_Array & String_Array::operator=(const String_Array & c)
     return *this;
 }
 
-std::string String_Array::operator[](int index) const
+std::string & String_Array::operator[](int index) const
 {
     assert(index >= 0 && index < m_size);
 
@@ -302,11 +302,12 @@ int main(void)
     String_Array arr_3;
     arr_3 = arr_1;
     cout << arr_3 << endl;
+    cout << arr_1 + arr_2 << endl;
     
     String_Array arr_4 = arr_1.merge_with(arr_2);
     cout << arr_4 << endl;
-    cout << arr_1 + arr_2 << endl;
-
+    
+    arr_4[0] = "zero";
     cout << "arr_4:\n";
     for (int i = 0; i < arr_4.get_length(); ++i)
     {
