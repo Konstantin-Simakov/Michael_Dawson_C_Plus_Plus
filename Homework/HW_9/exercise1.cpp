@@ -44,6 +44,7 @@ ostream & operator<<(ostream & os, const Player & a_player)
 	return os;
 }
 
+
 class Lobby {
 	friend ostream & operator<<(ostream & os, const Lobby & a_lobby);
 public:
