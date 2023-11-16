@@ -74,15 +74,15 @@ public:
     unsigned get_number() const;
     // Max possible cards in a hand.
     // Used outside this class.
-    static const int MAX_CARDS = 5;
+    static const int MAX_CARDS = 7;
 protected:
     vector<Card *> m_cards;
 };
 
 Hand::Hand()
 {
-    // No more than 7 card per hand.
-    m_cards.reserve(7);
+    // No more than MAX_CARDS card per hand.
+    m_cards.reserve(MAX_CARDS);
 }
 
 Hand::~Hand()
