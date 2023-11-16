@@ -264,12 +264,10 @@ void Game::winners()
 	// The vector of pointers is needed 
 	// to prevent calling the destructor more than 1 time for the same data.
 	vector<Player *> p_win_players;
-	vector<Player *>::iterator pp_winner;
-	vector<Player>::iterator p_player;
 
 	// Determine the max score.
 	int max_score = 0;
-	for (p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
+	for (auto p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
 	{
 		if (max_score < p_player->get_total())
 		{
@@ -278,7 +276,7 @@ void Game::winners()
 	}
 
 	// Determine players who has the max score.
-	for (p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
+	for (auto p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
 	{
 		if (max_score == p_player->get_total())
 		{
@@ -287,7 +285,7 @@ void Game::winners()
 	}
 
 	// Display the winners.
-	for (pp_winner = p_win_players.begin(); pp_winner != p_win_players.end(); ++pp_winner)
+	for (auto pp_winner = p_win_players.begin(); pp_winner != p_win_players.end(); ++pp_winner)
 	{
 		(*pp_winner)->win();
 	}
