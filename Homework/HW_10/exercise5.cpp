@@ -15,9 +15,6 @@ using namespace std;
 char ask_yes_no(const string & str);
 int ask_number(const string & str, int low, int high);
 
-const char YES = 'Y';
-const char NO = 'N';
-
 
 class Card {
 public:
@@ -482,6 +479,9 @@ private:
     void clear_all();
     // Check if all players is busted before opening the dealer's hand.
     bool all_is_busted() const;
+public:
+    static const char YES = 'Y';
+    static const char NO = 'N';
 };
 
 Game::Game(const vector<Player> & players):
@@ -602,7 +602,7 @@ void Game::play()
         {
         	char answer = ask_yes_no("Do you want to collect your winnings or "
                 "wait until the end of the game? (y/n): ");
-        	if (YES == answer)
+        	if (Game::YES == answer)
         	{
         		// The player wins with a factor of 1
         		// because he took the winnings immediately.
@@ -711,9 +711,9 @@ int main(void)
         a_game.play();
         
         again = ask_yes_no("\nDo you want to play again? (Y/N): ");
-    } while (again != NO);
+    } while (again != Game::NO);
   
-    cout << "\nBye\n";
+    cout << "\nBye!\n";
 
     return 0;
 }
