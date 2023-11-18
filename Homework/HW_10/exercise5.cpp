@@ -97,24 +97,24 @@ Hand::Hand()
 
 Hand::Hand(const Hand & a_hand)
 {
-	for (auto pp_card = a_hand.m_cards.begin(); pp_card != a_hand.m_cards.end(); ++pp_card)
-	{
-		add(*pp_card);
-	}
+    for (auto pp_card = a_hand.m_cards.begin(); pp_card != a_hand.m_cards.end(); ++pp_card)
+    {
+        add(*pp_card);
+    }
 }
 
 Hand & Hand::operator=(const Hand & a_hand)
 {
-	if (this != &a_hand)
-	{
-		clear();
-		for (auto pp_card = a_hand.m_cards.begin(); pp_card != a_hand.m_cards.end(); ++pp_card)
-		{
-			add(*pp_card);
-		}
-	}
+    if (this != &a_hand)
+    {
+        clear();
+        for (auto pp_card = a_hand.m_cards.begin(); pp_card != a_hand.m_cards.end(); ++pp_card)
+        {
+            add(*pp_card);
+        }
+    }
 
-	return *this;
+    return *this;
 }
 
 Hand::~Hand()
@@ -142,7 +142,7 @@ void Hand::clear()
 
 unsigned Hand::get_number() const
 {
-	return m_cards.size();
+    return m_cards.size();
 }
 
 int Hand::get_total() const
@@ -317,20 +317,20 @@ public:
     const string & get_name() const;
     bool get_round_end() const;
 private:
-	int m_bet;
-	// If a player has a blackjack immediately, 
-	// he can end the round right away or wait until it ends.
-	// True -- if the player won, false -- if he lost in a game round.
-	bool m_round_end;
-	int m_fund;
+    int m_bet;
+    // If a player has a blackjack immediately, 
+    // he can end the round right away or wait until it ends.
+    // True -- if the player won, false -- if he lost in a game round.
+    bool m_round_end;
+    int m_fund;
 };
 
 Player::Player(const string & name, float fund):
 Generic_Player(name)
 {
-	m_fund = fund;
-	m_bet = 0;
-	m_round_end = false;
+    m_fund = fund;
+    m_bet = 0;
+    m_round_end = false;
 }
 
 Player::~Player()
@@ -338,52 +338,52 @@ Player::~Player()
 
 bool Player::get_round_end() const
 {
-	return m_round_end;
+    return m_round_end;
 }
 
 int Player::get_fund() const
 {
-	return m_fund;
+    return m_fund;
 }
 
 const string & Player::get_name() const
 {
-	return m_name;
+    return m_name;
 }
 
 void Player::place_bet()
 {
-	// Report about the player's fund.
-	cout << m_name << "\'s fund is $" << m_fund << ".\n";
+    // Report about the player's fund.
+    cout << m_name << "\'s fund is $" << m_fund << ".\n";
 
-	// Get how much money the player wants to bet.
-	int bet = ask_number("Your bet (1 - " + to_string(m_fund) + "): $", 1, m_fund);
-	m_bet = bet;
+    // Get how much money the player wants to bet.
+    int bet = ask_number("Your bet (1 - " + to_string(m_fund) + "): $", 1, m_fund);
+    m_bet = bet;
 }
 
 void Player::clear()
 {
-	// The player returns to the beginning state of the game 
-	// to the next game round.
-	Hand::clear();
-	m_round_end = false;
+    // The player returns to the beginning state of the game 
+    // to the next game round.
+    Hand::clear();
+    m_round_end = false;
 }
 
 bool Player::is_hitting() const
 {
-	bool hit = false;
+    bool hit = false;
 
-	if (get_total() != Generic_Player::BJ_SCORE)
-	{
-	    cout << m_name << ", do you want a hit? (y/n): ";
-	    char response;
-	    cin >> response;
-	    hit = ('y' == response || 'Y' == response);
-	}
-	else
-	{
-		cout << m_name << " has Blackjack.\n";	
-	}
+    if (get_total() != Generic_Player::BJ_SCORE)
+    {
+        cout << m_name << ", do you want a hit? (y/n): ";
+        char response;
+        cin >> response;
+        hit = ('y' == response || 'Y' == response);
+    }
+    else
+    {
+        cout << m_name << " has Blackjack.\n";  
+    }
 
     return hit;
 }
@@ -400,8 +400,8 @@ void Player::win(double factor)
 
 void Player::bust()
 {
-	Generic_Player::bust();
-	lose();
+    Generic_Player::bust();
+    lose();
 }
 
 void Player::lose()
@@ -461,7 +461,7 @@ void Dealer::flip_first_card()
 
 class Game {
 public:
-	const int MAX_DECKS = 8;
+    const int MAX_DECKS = 8;
     Game(const vector<Player> & players);
     ~Game();
     // Conduct the game.
@@ -474,7 +474,7 @@ private:
     int m_decks;
 private:
     // Delete all players they haven't fund more before the next round. 
-	void remove_bankrupts();
+    void remove_bankrupts();
     // Clear the hands of all players and the dealer before the next game round.
     void clear_all();
     // Check if all players is busted before opening the dealer's hand.
@@ -499,18 +499,18 @@ Game::~Game()
 
 void Game::remove_bankrupts()
 {
-	for (auto p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
-	{
-		if (0 == p_player->get_fund())
-		{
-			cout << p_player->get_name() << " has no more money and leaves the gaming table.\n\n";
-			// erase() method crushes placement of iterators
-			// or returns the iterator to the last vector element.
-			// p_player is decremented after it is passed to earse() method
-			// but before erase() is executed.
-			m_players.erase(p_player--);
-		}
-	}
+    for (auto p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
+    {
+        if (0 == p_player->get_fund())
+        {
+            cout << p_player->get_name() << " has no more money and leaves the gaming table.\n\n";
+            // erase() method crushes placement of iterators
+            // or returns the iterator to the last vector element.
+            // p_player is decremented after it is passed to earse() method
+            // but before erase() is executed.
+            m_players.erase(p_player--);
+        }
+    }
 }
 
 void Game::clear_all()
@@ -538,41 +538,41 @@ bool Game::all_is_busted() const
 
 void Game::play()
 {
-	// If only 1 player is left and he has blackjack.
-	// At the beginning of the next round, there is no such player.
-	bool only_one_and_bj = false;
+    // If only 1 player is left and he has blackjack.
+    // At the beginning of the next round, there is no such player.
+    bool only_one_and_bj = false;
 
-	// Check if any players have no money left before the next round and remove them.
-	remove_bankrupts();
-	// Check if there is at least 1 player in the game.
-	if (m_players.empty())
-	{
-		cout << "No one player has money. The game is over.\n";
-		cout << "\nBye!\n";
+    // Check if any players have no money left before the next round and remove them.
+    remove_bankrupts();
+    // Check if there is at least 1 player in the game.
+    if (m_players.empty())
+    {
+        cout << "No one player has money. The game is over.\n";
+        cout << "\nBye!\n";
         clear_all();
 
-		exit(EXIT_FAILURE);
-	}
+        exit(EXIT_FAILURE);
+    }
 
-	// The remaining players place their bets.
-	for (auto p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
-	{
-		p_player->place_bet();
-	}
-	cout << endl;
+    // The remaining players place their bets.
+    for (auto p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
+    {
+        p_player->place_bet();
+    }
+    cout << endl;
 
-	// Check how many cards in the deck.
-	// If the number cards in the deck is less than 
-	// the number of players and the dealer multiplied by max cards in a hand, 
-	// populate and shuffle the deck extra. 
-	if (m_deck.get_number() < ((m_players.size() + 1) * Hand::MAX_CARDS) &&
-		m_decks < MAX_DECKS)
-	{
-		m_decks++;
-		cout << "Populate and shuffle the deck...\n";
-		m_deck.populate();
-		m_deck.shuffle();
-	}
+    // Check how many cards in the deck.
+    // If the number cards in the deck is less than 
+    // the number of players and the dealer multiplied by max cards in a hand, 
+    // populate and shuffle the deck extra. 
+    if (m_deck.get_number() < ((m_players.size() + 1) * Hand::MAX_CARDS) &&
+        m_decks < MAX_DECKS)
+    {
+        m_decks++;
+        cout << "Populate and shuffle the deck...\n";
+        m_deck.populate();
+        m_deck.shuffle();
+    }
 
     // Deal 2 start cards for players.
     vector<Player>::iterator p_player;
@@ -600,23 +600,23 @@ void Game::play()
         m_deck.additional_cards(*p_player);
         if (Generic_Player::BJ_SCORE == p_player->get_total())
         {
-        	char answer = ask_yes_no("Do you want to collect your winnings or "
+            char answer = ask_yes_no("Do you want to collect your winnings or "
                 "wait until the end of the game? (y/n): ");
-        	if (Game::YES == answer)
-        	{
-        		// The player wins with a factor of 1
-        		// because he took the winnings immediately.
-        		p_player->win(1.0);
+            if (Game::YES == answer)
+            {
+                // The player wins with a factor of 1
+                // because he took the winnings immediately.
+                p_player->win(1.0);
 
-        		// If the only 1 player is left and he has blackjack,
-        		// end the game round with initial values
-        		// for the remaining player and the dealer
-        		// before the next round.
-        		if (m_players.size() == 1)
-        		{
-        			only_one_and_bj = true;
-        		}
-        	}
+                // If the only 1 player is left and he has blackjack,
+                // end the game round with initial values
+                // for the remaining player and the dealer
+                // before the next round.
+                if (m_players.size() == 1)
+                {
+                    only_one_and_bj = true;
+                }
+            }
         }
     }
 
@@ -625,48 +625,48 @@ void Game::play()
     // and he isn't the last one left.
     if (!(only_one_and_bj) && !(all_is_busted()))
     {
-	    // Show the first card of the dealer.
-	    m_dealer.flip_first_card();
-	    cout << endl << m_dealer;
+        // Show the first card of the dealer.
+        m_dealer.flip_first_card();
+        cout << endl << m_dealer;
 
-	    m_deck.additional_cards(m_dealer);
-	    if (m_dealer.is_busted())
-	    {
-	        // All remaining in the game wins.
-	        for (p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
-	        {
-	            if (!(p_player->get_round_end()) && !(p_player->is_busted()))
-	            {
-	            	// The player wins with factor 1.5
-	            	// because he waited for the end of the game round.
-	                p_player->win(1.5);
-	            }
-	        }
-	    }
-	    else
-	    {
-	        // Compare all remaining players' the sum of scores with the dealer's one.
-	        for (p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
-	        {
-	            if (!(p_player->get_round_end()) && !(p_player->is_busted()))
-	            {
-	                if (p_player->get_total() > m_dealer.get_total())
-	                {
-	                	// The player wins with factor 1.5
-	            		// because he waited for the end of the game round.
-	                    p_player->win(1.5);
-	                }
-	                else if (p_player->get_total() < m_dealer.get_total())
-	                {
-	                    p_player->lose();
-	                }
-	                else
-	                {
-	                    p_player->push();
-	                }
-	            }
-	        }
-	    }
+        m_deck.additional_cards(m_dealer);
+        if (m_dealer.is_busted())
+        {
+            // All remaining in the game wins.
+            for (p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
+            {
+                if (!(p_player->get_round_end()) && !(p_player->is_busted()))
+                {
+                    // The player wins with factor 1.5
+                    // because he waited for the end of the game round.
+                    p_player->win(1.5);
+                }
+            }
+        }
+        else
+        {
+            // Compare all remaining players' the sum of scores with the dealer's one.
+            for (p_player = m_players.begin(); p_player != m_players.end(); ++p_player)
+            {
+                if (!(p_player->get_round_end()) && !(p_player->is_busted()))
+                {
+                    if (p_player->get_total() > m_dealer.get_total())
+                    {
+                        // The player wins with factor 1.5
+                        // because he waited for the end of the game round.
+                        p_player->win(1.5);
+                    }
+                    else if (p_player->get_total() < m_dealer.get_total())
+                    {
+                        p_player->lose();
+                    }
+                    else
+                    {
+                        p_player->push();
+                    }
+                }
+            }
+        }
     }
 
     // Before the next game round.
@@ -721,15 +721,15 @@ int main(void)
 char ask_yes_no(const string & str)
 {
     const string VALID_ANSWER = "YyNn";
-	char choice;
-	do
-	{
-		cout << str;
-		cin >> choice;
-	} while (VALID_ANSWER.find(choice) == string::npos);
+    char choice;
+    do
+    {
+        cout << str;
+        cin >> choice;
+    } while (VALID_ANSWER.find(choice) == string::npos);
     choice = toupper(choice);
 
-	return choice;
+    return choice;
 }
 
 int ask_number(const string & str, int low, int high)
