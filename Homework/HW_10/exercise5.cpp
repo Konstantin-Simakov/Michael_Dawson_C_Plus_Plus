@@ -201,7 +201,6 @@ public:
     bool is_busted() const;
     // Declare player has busted.
     virtual void bust();
-    // virtual void clear();
     static const int BJ_SCORE = 21;
 protected:
     string m_name;
@@ -224,11 +223,6 @@ void Generic_Player::bust()
     cout << m_name << " busts.\n";
 }
 
-/*void Generic_Player::clear()
-{
-	Hand::clear();
-}
-*/
 
 class Deck: public Hand {
 public:
