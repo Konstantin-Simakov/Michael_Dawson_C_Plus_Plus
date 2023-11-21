@@ -16,6 +16,8 @@
 #include <vector>
 // For find() algorithm.
 #include <algorithm>
+// For invalid_argument exception.
+#include <stdexcept>
 // For exti(), EXIT_FAILURE.
 #include <cstdlib>
 using namespace std;
@@ -54,12 +56,12 @@ class Player;
 class Board {
     friend ostream & operator<<(ostream & os, const Board & a_board);
 public:
-    // 'size' is the number of cells on one side of the board.
     Board(int size, const Player & a_player);
     // Change the player's piece location by the specified position.
     bool change_piece_location(Player & a_player, int position);
     int get_size() const;
 private:
+    // 'm_size' is the number of cells on one side of the board.
     int m_size;
     vector<char> m_board;
 };
@@ -214,7 +216,7 @@ bool Board::change_piece_location(Player & a_player, int position)
 
 
 // Friend funciton prototypes.
-ostream & operator<<(ostream & os, const Board & a_board);
+// ostream & operator<<(ostream & os, const Board & a_board);
 
 // Main program.
 int main(void)
@@ -239,7 +241,17 @@ int main(void)
     str_to_upper(s_next_pos);
     while (s_next_pos != QUIT)
     {
-        int next_pos = stoi(s_next_pos);
+        int next_pos;
+        try
+        {
+            next_pos = stoi(s_next_pos);
+        }
+        catch (const std::invalid_argument & ex)
+        {
+            cout << "\nError: failed to convert to int in \'" << ex.what() << "\'.\n";
+            abort();
+        }
+
         if (!a_board.change_piece_location(a_player, next_pos))
         {
             cout << "Failed to change piece location. The program terminated.\n";
