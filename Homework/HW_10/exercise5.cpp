@@ -317,21 +317,20 @@ public:
     const string & get_name() const;
     bool get_round_end() const;
 private:
+    int m_fund;
     int m_bet;
     // If a player has a blackjack immediately, 
     // he can end the round right away or wait until it ends.
     // True -- if the player won, false -- if he lost in a game round.
     bool m_round_end;
-    int m_fund;
 };
 
 Player::Player(const string & name, float fund):
-Generic_Player(name)
-{
-    m_fund = fund;
-    m_bet = 0;
-    m_round_end = false;
-}
+Generic_Player(name),
+m_fund(fund),
+m_bet(0),
+m_round_end(false)
+{}
 
 Player::~Player()
 {}
