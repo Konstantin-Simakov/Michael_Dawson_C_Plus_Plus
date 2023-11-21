@@ -18,7 +18,7 @@
 #include <algorithm>
 // For invalid_argument exception.
 #include <stdexcept>
-// For exti(), EXIT_FAILURE.
+// For exti(), EXIT_FAILURE, abort().
 #include <cstdlib>
 using namespace std;
 
