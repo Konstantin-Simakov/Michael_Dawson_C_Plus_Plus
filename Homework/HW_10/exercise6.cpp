@@ -16,7 +16,7 @@
 #include <vector>
 // For find() algorithm.
 #include <algorithm>
-// For invalid_argument exception.
+// For std::invalid_argument exception.
 #include <stdexcept>
 // For exti(), EXIT_FAILURE, abort().
 #include <cstdlib>
