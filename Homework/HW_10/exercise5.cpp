@@ -15,6 +15,15 @@ using namespace std;
 char ask_yes_no(const string & str);
 int ask_number(const string & str, int low, int high);
 
+// Discard the remaining input line.
+inline void eat_line(void)
+{
+    while (cin.get() != '\n')
+    {
+        continue;
+    }
+}
+
 
 class Card {
 public:
@@ -696,7 +705,8 @@ int main(void)
         cout << "Enter player name: ";
         getline(cin, name);
         cout << "Enter player fund: $";
-        (cin >> fund).ignore();
+        cin >> fund;
+        eat_line();
         
         players.push_back(Player(name, fund)); 
     }
@@ -737,8 +747,16 @@ int ask_number(const string & str, int low, int high)
     do
     {
         cout << str;
-        cin >> number;
+        while ((cin >> number).fail())
+        {
+            cout << "Incorrect data input. Your number: ";
+            cin.clear();
+            eat_line();
+        }
     } while (number < low || number > high);
+
+    // Discard the remaining input line.
+    eat_line();
 
     return number;
 }

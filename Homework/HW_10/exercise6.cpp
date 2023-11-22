@@ -334,6 +334,12 @@ int ask_number(const string & str, int low, int high)
         }
     } while (number < low || number > high);
 
+    // Discard the remaining input line.
+    while (cin.get() != '\n')
+    {
+        continue;
+    }
+
     return number;
 }
 
