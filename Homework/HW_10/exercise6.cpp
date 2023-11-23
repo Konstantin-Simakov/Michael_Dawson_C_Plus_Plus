@@ -248,7 +248,7 @@ int main(void)
         }
         catch (const std::invalid_argument & ex)
         {
-            cout << "\nError: failed to convert to int in \'" << ex.what() << "\'.\n";
+            cout << "Invalid argument: " << ex.what() << endl;
             abort();
         }
 
