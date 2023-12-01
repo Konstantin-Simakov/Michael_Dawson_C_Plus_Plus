@@ -249,6 +249,7 @@ void display(const Customer customers[], int num)
 	}
 }
 
+// Modified insertion sort algorithm.
 void sort_alphabetical(Customer customers[], int num)
 {
 	for (int i = 0; i < num - 1; ++i)
