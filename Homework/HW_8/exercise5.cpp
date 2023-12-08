@@ -12,6 +12,7 @@
 #include <cstdlib>
 using namespace std;
 
+
 class Time {
 public:
 	const int SECS_PER_MIN = 60;
@@ -60,25 +61,25 @@ void Time::times(void)
 {
 	while (true)
 	{
+		display();
+
 		++m_sec;
 		if (SECS_PER_MIN == m_sec)
 		{
 			m_sec = 0;
 			++m_min;
-
-			if (MINS_PER_HOUR == m_min)
-			{
-				m_min = 0;
-				++m_hour;
-
-				if (HOURS_PER_DAY == m_hour)
-				{
-					m_hour = 0;
-				}
-			}
 		}
+		if (MINS_PER_HOUR == m_min)
+		{
+			m_min = 0;
+			++m_hour;
+		}
+		if (HOURS_PER_DAY == m_hour)
+		{
+			m_hour = 0;
+		}
+		
 		std::this_thread::sleep_for(std::chrono::nanoseconds(1000000000));
-		display();
 	}
 }
 
