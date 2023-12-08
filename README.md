@@ -1,2 +1,2 @@
 # Michael_Dawson_C_Plus_Plus
-Solutions of exercises from C++ Michael Dawson book.
+Solutions to exercises from Michael Dawson's book about C++.
