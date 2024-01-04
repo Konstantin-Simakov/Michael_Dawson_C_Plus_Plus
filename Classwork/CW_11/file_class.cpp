@@ -9,8 +9,8 @@ class Point {
 public:
     // Inline methods.
     Point(double x, double y): m_x(y), m_y(y) {}
-    double get_x() const { return x; }
-    double get_y() const { return y; }
+    double get_x() const { return m_x; }
+    double get_y() const { return m_y; }
 private:
     double m_x;
     double m_y;
