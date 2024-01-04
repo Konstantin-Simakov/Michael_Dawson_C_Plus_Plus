@@ -8,7 +8,7 @@ using namespace std;
 class Point {
 public:
     // Inline methods.
-    Point(double x, double y): m_x(y), m_y(y) {}
+    Point(double x, double y): m_x(x), m_y(y) {}
     double get_x() const { return m_x; }
     double get_y() const { return m_y; }
 private:
