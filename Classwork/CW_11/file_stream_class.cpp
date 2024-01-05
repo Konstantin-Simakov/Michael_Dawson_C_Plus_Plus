@@ -9,6 +9,7 @@ class Person {
     friend istream & operator>>(istream & in, Person & person);
     friend ostream & operator<<(ostream & os, const Person & person);
 public:
+    // Inline methods.
     Person(string name = "", unsigned age = 0): m_name(name), m_age(age) {}
     string get_name() const { return m_name; }
     unsigned get_age() const { return m_age; }
