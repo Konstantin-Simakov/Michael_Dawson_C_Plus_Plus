@@ -8,7 +8,7 @@ using namespace std;
 class Point {
 public:
     // Inline methods.
-    Point(double x, double y): m_x(x), m_y(y) {}
+    Point(double x = 0, double y = 0): m_x(x), m_y(y) {}
     double get_x() const { return m_x; }
     double get_y() const { return m_y; }
 private:
@@ -29,7 +29,7 @@ int main(void)
     }
     // Write all Point objects in the text file.
     // (Based on range 'for' loop.)
-    for (const Point& point: points)
+    for (const Point & point: points)
     {
         fout << point.get_x() << " " << point.get_y() << std::endl;
     }
@@ -50,8 +50,10 @@ int main(void)
     }
     fin.close();
   
-    for (const Point& point: new_points)
+    for (const Point & point: new_points)
     {
         cout << "Point x: " << point.get_x() << "\ty: " << point.get_y() << endl;
     }
+
+    return 0;
 }

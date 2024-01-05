@@ -17,7 +17,6 @@ int main(void)
         cerr << "Couldn\'t open the file textfile.txt." << endl;
         exit(EXIT_FAILURE);
     }
-
     // Process the file.
     while (getline(fin, line))
     {
@@ -25,4 +24,6 @@ int main(void)
     }
     // Close the file.
     fin.close();
+
+    return 0;
 }

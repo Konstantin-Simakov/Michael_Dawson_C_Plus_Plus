@@ -18,6 +18,11 @@ int main(void)
         cerr << "Couldn\'t open the file textfile.txt." << endl;
         exit(EXIT_FAILURE);
     }
+    // File processing.
+    fout << "1 2 3 4 5 6 7 8 9 10" << endl;
+    fout << "11 12 13 14 15 16 17 18 19 20" << endl;
+    
+    // File closing.
     fout.close();
     cerr << "File has been written." << endl;
 
