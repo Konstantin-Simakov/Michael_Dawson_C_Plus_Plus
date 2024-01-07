@@ -26,7 +26,6 @@ void display(int ** matrix, int rows, int cols);
 int min_trg(int ** matrix, int rows, int cols);
 int max_col(int ** matrix, int rows, int cols, int col_index);
 int max_main_diag(int ** matrix, int rows, int cols);
-int first_max_item(int ** matrix, int rows, int cols);
 int first_max_item(int ** matrix, int rows, int cols, 
                     int & index_row, int & index_col);
 void to_square(int ** matrix, int rows, int cols);
@@ -83,65 +82,47 @@ int main(void)
     return 0;
 }
 
-void to_square(int ** matrix, int rows, int cols)
+int ** create(int ** matrix, int rows, int cols)
+{
+    matrix = new int * [rows];
+    for (int i = 0; i < rows; ++i)
+    {
+        matrix[i] = new int [cols];
+    }
+
+    return matrix;
+}
+
+void init_matrix(std::istream & fin, int ** matrix, int rows, int cols)
 {
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; ++j)
         {
-            if (0 == matrix[i][j])
-            {
-                if (cols - 1 == j)
-                {
-                    matrix[i][j - 1] *= matrix[i][j - 1];
-                }
-                else if (0 == j)
-                {
-                    matrix[i][1] *= matrix[i][1];
-                }
-                else
-                {
-                    matrix[i][j - 1] *= matrix[i][j - 1];
-                    matrix[i][j + 1] *= matrix[i][j + 1];
-                }
-            }
+            fin >> matrix[i][j];
         }
     }
 }
 
-int first_max_item(int ** matrix, int rows, int cols, 
-                    int & index_row, int & index_col)
+void del_matrix(int ** matrix, int rows, int cols)
 {
-    int max_item = matrix[0][0];
-    index_row = index_col = 0;
+    for (int i = 0; i < rows; ++i)
+    {
+        delete [] matrix[i];
+    }
+    delete [] matrix;
+}
+
+void display(int ** matrix, int rows, int cols)
+{
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; ++j)
         {
-            if (max_item < matrix[i][j])
-            {
-                max_item = matrix[i][j];
-                index_row = i;
-                index_col = j;
-            }
+            cout << matrix[i][j] << "  ";
         }
+        cout << endl;
     }
-
-    return max_item;
-}
-
-int max_main_diag(int ** matrix, int rows, int cols)
-{
-    int max_item = matrix[0][0];
-    for (int i = 1; i < rows; ++i)
-    {
-        if (max_item < matrix[i][i])
-        {
-            max_item = matrix[i][i];
-        }
-    }
-
-    return max_item;
 }
 
 int min_trg(int ** matrix, int rows, int cols)
@@ -173,45 +154,63 @@ int max_col(int ** matrix, int rows, int cols, int col_index)
     return local_max;
 }
 
-void display(int ** matrix, int rows, int cols)
+int max_main_diag(int ** matrix, int rows, int cols)
+{
+    int max_item = matrix[0][0];
+    for (int i = 1; i < rows; ++i)
+    {
+        if (max_item < matrix[i][i])
+        {
+            max_item = matrix[i][i];
+        }
+    }
+
+    return max_item;
+}
+
+int first_max_item(int ** matrix, int rows, int cols, 
+                    int & index_row, int & index_col)
+{
+    int max_item = matrix[0][0];
+    index_row = index_col = 0;
+    for (int i = 0; i < rows; ++i)
+    {
+        for (int j = 0; j < cols; ++j)
+        {
+            if (max_item < matrix[i][j])
+            {
+                max_item = matrix[i][j];
+                index_row = i;
+                index_col = j;
+            }
+        }
+    }
+
+    return max_item;
+}
+
+void to_square(int ** matrix, int rows, int cols)
 {
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; ++j)
         {
-            cout << matrix[i][j] << "  ";
+            if (0 == matrix[i][j])
+            {
+                if (cols - 1 == j)
+                {
+                    matrix[i][j - 1] *= matrix[i][j - 1];
+                }
+                else if (0 == j)
+                {
+                    matrix[i][1] *= matrix[i][1];
+                }
+                else
+                {
+                    matrix[i][j - 1] *= matrix[i][j - 1];
+                    matrix[i][j + 1] *= matrix[i][j + 1];
+                }
+            }
         }
-        cout << endl;
     }
-}
-
-void init_matrix(std::istream & fin, int ** matrix, int rows, int cols)
-{
-    for (int i = 0; i < rows; ++i)
-    {
-        for (int j = 0; j < cols; ++j)
-        {
-            fin >> matrix[i][j];
-        }
-    }
-}
-
-int ** create(int ** matrix, int rows, int cols)
-{
-    matrix = new int * [rows];
-    for (int i = 0; i < rows; ++i)
-    {
-        matrix[i] = new int [cols];
-    }
-
-    return matrix;
-}
-
-void del_matrix(int ** matrix, int rows, int cols)
-{
-    for (int i = 0; i < rows; ++i)
-    {
-        delete [] matrix[i];
-    }
-    delete [] matrix;
 }
