@@ -1,5 +1,15 @@
-// ticket_13.cpp
-// Prepare to exam.
+// exercise3.cpp
+// 
+// Read a matrix from a file. 
+// The first 2 numbers are the size of the matrix, 
+// the rest are its elements in accordance with the given matrix size.
+// 
+// 1. Find the minimum among the values of the maximum elements of each column.
+// 2. Find the maximum among the elements of the main diagonal and 
+// the indices of the first maximum in the entire matrix, if it is square; 
+// if not, display the corresponding message.
+// 3. Square the numbers to the right and left of the zero elements of the matrix.
+// 
 #include <iostream>
 // For std::ifstream, std::ofstream classes.
 #include <fstream>
