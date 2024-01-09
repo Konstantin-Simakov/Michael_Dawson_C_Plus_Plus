@@ -1,0 +1,12 @@
+Subscribers whose time city calls exceeds 22500000 seconds:
+Sidorov Sidor Sidorovich: St.Petersburg, 2058054, 0, 22505555
+Petrov Peter Petrovich: Anatole, 1350480, 132595, 25905952
+
+Subscribers who used long-distance calls:
+Ivanov Ivan Ivanovich: Moscow, 1509837, 250005, 12502595
+Petrov Peter Petrovich: Anatole, 1350480, 132595, 25905952
+
+The list of subscribers in alphabetical order:
+Ivanov Ivan Ivanovich: Moscow, 1509837, 250005, 12502595
+Petrov Peter Petrovich: Anatole, 1350480, 132595, 25905952
+Sidorov Sidor Sidorovich: St.Petersburg, 2058054, 0, 22505555

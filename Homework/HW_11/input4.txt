@@ -1,0 +1,3 @@
+Ivanov 	Ivan 	Ivanovich 	Moscow 			1509837 	250005 		12502595
+Sidorov Sidor 	Sidorovich	St.Petersburg	2058054		0 	   		22505555
+Petrov	Peter   Petrovich	Anatole			1350480		132595 		25905952

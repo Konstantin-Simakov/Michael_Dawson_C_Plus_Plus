@@ -1,0 +1,9 @@
+Source array.
+1 2 3 4 5 6 7 8 9 10 11 
+Average: 6
+Geometric mean: 4.90924
+
+Array after insertion.
+1 2 11 3 4 11 5 6 11 7 8 11 9 10 11 11 
+Average: 7.5625
+Geometric mean: 6.31695
