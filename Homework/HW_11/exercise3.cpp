@@ -10,6 +10,8 @@
 // if not, display the corresponding message.
 // 3. Square the numbers to the right and left of the zero elements of the matrix.
 // 
+// All the results are displayed on the screen.
+// 
 #include <iostream>
 // For std::ifstream, std::ofstream classes.
 #include <fstream>

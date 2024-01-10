@@ -13,6 +13,7 @@
 // 1) Constructor;
 // 2) Getters;
 // 3) Setters;
+// 5) Overloaded >> operator;
 // 4) Overloaded << operator.
 // 
 // Tasks:
@@ -37,6 +38,7 @@ const int SIZE = 20;
 const int TIME_CITY = 22500000;
 
 class Subscriber {
+	friend istream & operator>>(istream & in, Subscriber & sub);
 	friend ostream & operator<<(ostream & os, const Subscriber & s);
 public:
 	Subscriber(
@@ -91,6 +93,7 @@ m_time_long_dist(time_long_dist),
 m_time_city_calls(time_city_calls)
 {}
 
+istream & operator>>(istream & in, Subscriber & sub);
 ostream & operator<<(ostream & os, const Subscriber & sub);
 int init(std::istream & in, Subscriber subs[], int size);
 // Display people whose time city calls exceeds the TIME_CITY value.
@@ -212,26 +215,14 @@ void display_time_city(std::ostream & out, const Subscriber subs[], int n)
 
 int init(std::istream & in, Subscriber subs[], int size)
 {
-	string last_name, first_name, middle_name, address;
-	int credit_card_num, time_long_dist, time_city_calls;
 	int i;
 
 	for (i = 0; i < size; ++i)
 	{
-		in >> last_name >> first_name >> middle_name >> address
-		   >> credit_card_num >> time_long_dist >> time_city_calls;
-		if (!in)
+		if (!(in >> subs[i]))
 		{
 			break;
 		}
-
-		subs[i].set_last_name(last_name);
-		subs[i].set_first_name(first_name);
-		subs[i].set_middle_name(middle_name);
-		subs[i].set_address(address);
-		subs[i].set_credit_card_num(credit_card_num);
-		subs[i].set_time_long_dist(time_long_dist);
-		subs[i].set_time_city_calls(time_city_calls);
 	}
 
 	// Check the stop reading reason.
@@ -252,12 +243,33 @@ int init(std::istream & in, Subscriber subs[], int size)
 	return i;
 }
 
+istream & operator>>(istream & in, Subscriber & sub)
+{
+	string last_name, first_name, middle_name, address;
+	int credit_card_num, time_long_dist, time_city_calls;
+
+	in >> last_name >> first_name >> middle_name >> address
+	   >> credit_card_num >> time_long_dist >> time_city_calls;
+	if (in)
+	{
+		sub.set_last_name(last_name);
+		sub.set_first_name(first_name);
+		sub.set_middle_name(middle_name);
+		sub.set_address(address);
+		sub.set_credit_card_num(credit_card_num);
+		sub.set_time_long_dist(time_long_dist);
+		sub.set_time_city_calls(time_city_calls);
+	}
+
+	return in;
+}
+
 ostream & operator<<(ostream & os, const Subscriber & s)
 {
 	// Display all data member values.
-	os << s.m_last_name << " " << s.m_first_name << " " << s.m_middle_name << ": ";
-	os << s.m_address << ", " << s.m_credit_card_num << ", "
-	   << s.m_time_long_dist << ", " << s.m_time_city_calls;
+	os << s.get_last_name() << " " << s.get_first_name() << " " << s.get_middle_name() << ": ";
+	os << s.get_address() << ", " << s.get_credit_card_num() << ", "
+	   << s.get_time_long_dist() << ", " << s.get_time_city_calls();
 
 	return os;
 }
