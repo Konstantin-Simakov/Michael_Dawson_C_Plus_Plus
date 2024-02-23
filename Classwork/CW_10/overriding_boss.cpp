@@ -37,12 +37,33 @@ public:
 	void virtual taunt() const;
 	// Using the virtual keyword is optional.
 	void virtual attack() const;
+	Boss(const Boss & a_boss);
+	Boss & operator=(const Boss & a_boss);
 };
 
 Boss::Boss(int damage):
 // Calling the base class constructor with an argument.
 Enemy(damage)
 {}
+
+// Overriding the operator=() in the derivative class.
+Boss & Boss::operator=(const Boss & a_boss)
+{
+	if (this != &a_boss)
+	{
+		Enemy::operator=(a_boss);
+		// Some code...		
+	}
+
+	return *this;
+}
+
+// Copy constructor in the derivative class.
+Boss::Boss(const Boss & a_boss):
+Enemy(a_boss)
+{
+	// Some code...
+}
 
 // Overriding the method of the base class.
 void Boss::taunt() const
@@ -55,8 +76,9 @@ void Boss::attack() const
 {
 	// Calling the method of the base class.
 	Enemy::attack();
-	cout << " And laughs heartily at you.\n";
+	cout << " And boss laughs heartily at you.\n";
 }
+
 
 int main(void)
 {
