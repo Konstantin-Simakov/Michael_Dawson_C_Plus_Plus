@@ -12,7 +12,7 @@ int main(void)
     int tries = 0;
 
     // Player invitation
-    cout << "\tWelcome to Guess My Number!\n";
+    cout << "\t\tWelcome to Guess My Number!\n";
     cout << "Computer guesses an integer which user guessed in the range from " 
          << LOW << " to " << HIGH << ".\n\n";
 
