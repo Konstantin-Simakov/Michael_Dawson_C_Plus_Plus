@@ -1,69 +1,51 @@
 // exercise7.cpp
 // Binary search
 #include <iostream>
+using namespace std;
 
-int main(void)
+int main(void) 
 {
-	using namespace std;
-	const int LOW = 1;		// Global lower side
-	const int HIGH = 100;	// Global higher side
-	int low = LOW - 1;		// Current lower side
-	int high = HIGH;		// Current higher side
-	int guess;				// Computer guess
-	string answer;			// User answer
-	int tries = 0;
+    const int LOW = 1;      // Global lower side
+    const int HIGH = 100;   // Global higher side
+    int min = LOW;      
+    int max = HIGH;      
+    int guess;              // Computer guess
+    char answer;            // User answer
+    int tries = 0;   
 
-	// Player invitation
-	cout << "\tWelcome to Guess My Number!\n";
-	cout << "Computer guesses a number which user guessed in the range from 1 to 100.\n\n";
+    // Player invitation
+    cout << "\t\tWelcome to Guess My Number!\n";
+    cout << "Computer guesses an integer which user guessed in the range from " 
+         << LOW << " to " << HIGH << ".\n\n";
 
-	// Main loop
-	do
-	{
-		// Low side processing
-		if (guess - low == 1)
-		{
-			cout << "Case: Low side processing\n";
-			cout << "Your guess is " << guess << endl;
-			break;
-		}
-		// High side processing
-		if (high - guess == 1)
-		{
-			cout << "Case: High side processing\n";
-			guess = high;
-			cout << "Your guess is " << guess << endl;
-			break;
-		}
+    // Main loop
+    do
+    {
+        tries++;
+        guess = (min + max) / 2;    // Divide the range in half
+        cout << "Is your guess " << guess << "? (y - yes, h - higher, l - lower)\n";
+        
+        cin >> answer;
+        if (answer == 'y')
+            break;
+        else if (answer == 'h') 
+            min = guess + 1;        // Number is higher, narrow the range
+        else if (answer == 'l') 
+            max = guess - 1;        // Number is lower, narrow the range
+        else 
+        {
+            cout << "Invalid input.\n";
+            tries--; 
+        }
+    } while (min <= max);
+    
+    if (min > max)
+        cout << "Error: you guessed an incorrect number.\n";
+    else
+    {
+        cout << "\nI (computer) guessed it in " << tries << " tries!\n";
+        cout << "Bye!\n";
+    }
 
-
-		// Common working of the algorithm 
-		guess = (low + high) / 2;
-		if (guess - low == 1 && high - guess == 1)
-		{
-			cout << "Case: Common working of the algorithm\n";
-			cout << "Your guess is " << guess << endl;
-			break;
-		}
-		cout << "Is " << guess << " your number? [Yes/Higher/Lower] ";
-		++tries;
-
-		// Input processing
-		cin >> answer;
-		while (answer != "Lower" && answer != "Higher" && answer != "Yes")
-		{
-			cout << "Input error.\nYour answer again: ";
-			cin >> answer;
-		}
-		if ("Lower" == answer)
-			high = guess;
-		else
-			low = guess;
-	} while (answer != "Yes");
-
-	// Player farewell
-	cout << "\nI (computer) got it in " << tries << " tries!\n";
-	cout << "Bye!\n";
-
-	return 0;
+    return 0;
 }
