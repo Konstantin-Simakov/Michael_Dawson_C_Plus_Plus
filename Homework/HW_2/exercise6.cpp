@@ -6,7 +6,7 @@ using namespace std;
 int main(void)
 {
     const int LOW = 1;      // Global lower side
-    const int HIGH = 5;   // Global higher side
+    const int HIGH = 100;   // Global higher side
     int guess = LOW;        // Computer guess
     char answer;            // User answer
     int tries = 0;
