@@ -25,16 +25,16 @@ int main(void)
 
 bool is_within(const char * str, char ch)
 {
-  bool found = false;
-  while (*str)
-  {
-    if (ch == *str)
+    bool found = false;
+    while (*str)
     {
-      found = true;
-      break;
+        if (ch == *str)
+        {
+            found = true;
+            break;
+        }
+        ++str;
     }
-    ++str;
-  }
 
-  return found;
+    return found;
 }
